@@ -73,7 +73,7 @@
         </li>
 
         <li class="sidebar-item" title="Chat">
-            <a href="{{ route('chatify') }}" class="sidebar-link d-flex align-items-center">
+            <a href="{{ route('Chat') }}" class="sidebar-link d-flex align-items-center">
                 <i class="material-symbols-outlined">
                     chat
                 </i>

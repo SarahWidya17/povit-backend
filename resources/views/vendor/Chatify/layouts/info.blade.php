@@ -75,9 +75,15 @@
     </style>
 </head>
 <body>
+    <?php
+        $user = Auth::user();
+        $friends = $user->friends;
+    ?>
 
 {{-- user info and avatar --}}
-<div class="avatar av-l chatify-d-flex"></div>
+<div class="avatar av-l chatify-d-flex">
+    {{-- <img src="{{}}" alt=""> --}}
+</div>
 <p class="info-name">{{ config('chatify.name') }}</p>
 <div class="line"></div>
 
@@ -93,59 +99,70 @@
     <div class="friendSection">
         <div class="scroll">
             <!-- Profile Image Section -->
-            <div class="friend-row">
-                <div class="circle">
-                    <img src="https://via.placeholder.com/50" alt="Profile Image">
+            {{-- @foreach ($friends as $friend)
+            <?php
+                // dd($friend->profile_pics);
+            ?>
+                <div class="friend-row">
+                    <div class="circle">
+                        <img src="{{$friend->profile_pics}}" alt="Profile Image">
+                    </div>
+                    <div class="text">
+                        <h6 class="m-0">{{$friend->name}}</h6>
+                        <p style="margin-top: 1%">Halo aku andrea jelek dan sarah cantik</p>
+                    </div>
+                    <div class="actions" style="margin-right: 10%">
+                        <i class="fa-regular fa-comment-dots" style="color: #4ECB71; font-size: 25px; margin-left: 5px;"></i>
+                    </div>
                 </div>
-                <div class="text">
-                    <h6 class="m-0">kamukepo_</h6>
-                    <p style="margin-top: 1%">Halo aku andrea jelek dan sarah cantik</p>
+            @endforeach --}}
+{{-- ----------------------Users/Groups lists side---------------------- --}}
+        <div class="messenger-listView {{ !!$id ? 'conversation-active' : '' }}">
+            {{-- Header and search bar --}}
+            <div class="m-header">
+                <nav>
+                    <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
+                    {{-- header buttons --}}
+                    <nav class="m-header-right">
+                        <a href="#"><i class="fas fa-cog settings-btn"></i></a>
+                        <a href="#" class="listView-x"><i class="fas fa-times"></i></a>
+                    </nav>
+                </nav>
+                {{-- Search input --}}
+                <input type="text" class="messenger-search" placeholder="Search" />
+                {{-- Tabs --}}
+                {{-- <div class="messenger-listView-tabs">
+                    <a href="#" class="active-tab" data-view="users">
+                        <span class="far fa-user"></span> Contacts</a>
+                </div> --}}
+            </div>
+            {{-- tabs and lists --}}
+            <div class="m-body contacts-container">
+            {{-- Lists [Users/Group] --}}
+            {{-- ---------------- [ User Tab ] ---------------- --}}
+            <div class="show messenger-tab users-tab app-scroll" data-view="users">
+                {{-- Favorites --}}
+                <div class="favorites-section">
+                    <p class="messenger-title"><span>Favorites</span></p>
+                    <div class="messenger-favorites app-scroll-hidden"></div>
                 </div>
-                <div class="actions" style="margin-right: 10%">
-                    <i class="fa-regular fa-comment-dots" style="color: #4ECB71; font-size: 25px; margin-left: 5px;"></i>
+                {{-- Saved Messages --}}
+                <p class="messenger-title"><span>Your Space</span></p>
+                {!! view('Chatify::layouts.listItem', ['get' => 'saved']) !!}
+                {{-- Contact --}}
+                <p class="messenger-title"><span>All Messages</span></p>
+                <div class="listOfContacts" style="width: 100%;height: calc(100% - 272px);position: relative;"></div>
+            </div>
+                {{-- ---------------- [ Search Tab ] ---------------- --}}
+            <div class="messenger-tab search-tab app-scroll" data-view="search">
+                    {{-- items --}}
+                    <p class="messenger-title"><span>Search</span></p>
+                    <div class="search-records">
+                        <p class="message-hint center-el"><span>Type to search..</span></p>
+                    </div>
                 </div>
             </div>
-
-            <div class="friend-row">
-                <div class="circle">
-                    <img src="https://via.placeholder.com/50" alt="Profile Image">
-                </div>
-                <div class="text">
-                    <h6 class="m-0">kamukepo_</h6>
-                    <p style="margin-top: 1%">Halo aku andrea jelek dan sarah cantik</p>
-                </div>
-                <div class="actions" style="margin-right: 10%">
-                    <i class="fa-regular fa-comment-dots" style="color: #4ECB71; font-size: 25px; margin-left: 5px;"></i>
-                </div>
-            </div>
-
-            <div class="friend-row">
-                <div class="circle">
-                    <img src="https://via.placeholder.com/50" alt="Profile Image">
-                </div>
-                <div class="text">
-                    <h6 class="m-0">kamukepo_</h6>
-                    <p style="margin-top: 1%">Halo aku andrea jelek dan sarah cantik</p>
-                </div>
-                <div class="actions" style="margin-right: 10%">
-                    <i class="fa-regular fa-comment-dots" style="color: #4ECB71; font-size: 25px; margin-left: 5px;"></i>
-                </div>
-            </div>
-
-            <div class="friend-row">
-                <div class="circle">
-                    <img src="https://via.placeholder.com/50" alt="Profile Image">
-                </div>
-                <div class="text">
-                    <h6 class="m-0">kamukepo_</h6>
-                    <p style="margin-top: 1%">Halo aku andrea jelek dan sarah cantik</p>
-                </div>
-                <div class="actions" style="margin-right: 10%">
-                    <i class="fa-regular fa-comment-dots" style="color: #4ECB71; font-size: 25px; margin-left: 5px;"></i>
-                </div>
-            </div>
-
-
+        </div>
         </div>
     </div>
 </div>

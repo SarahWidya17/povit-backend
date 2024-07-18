@@ -16,6 +16,7 @@ return [
     */
     'storage_disk_name' => env('CHATIFY_STORAGE_DISK', 'public'),
 
+
     /*
     |-------------------------------------
     | Routes configurations
@@ -59,7 +60,7 @@ return [
     |-------------------------------------
     */
     'user_avatar' => [
-        'folder' => 'user-profile',
+        'folder' => 'user_profile',
         'default' => 'avatar.png',
     ],
 
@@ -72,7 +73,7 @@ return [
     |-------------------------------------
     */
     'gravatar' => [
-        'enabled' => true,
+        'enabled' => false,
         'image_size' => 200,
         'imageset' => 'identicon'
     ],

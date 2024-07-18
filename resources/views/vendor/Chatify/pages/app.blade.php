@@ -2,6 +2,8 @@
 @include('Chatify::layouts.headLinks')
 <div style="margin-left: 80px;">
     <div class="messenger">
+
+
         {{-- ----------------------Messaging side---------------------- --}}
         <div class="messenger-messagingView">
             {{-- header title [conversation name] amd buttons --}}
@@ -22,7 +24,7 @@
                     <span class="ic-noInternet">No internet access</span>
                 </div>
             </div>
-    
+
             {{-- Messaging area --}}
             <div class="m-body messages-container app-scroll" >
                 <div class="messages">
@@ -41,11 +43,11 @@
                     </div>
                 </div>
             </div>
-    
+
             {{-- Send Message Form --}}
             @include('Chatify::layouts.sendForm')
         </div>
-    
+
         {{-- ---------------------- Info side ---------------------- --}}
         <div class="messenger-infoView app-scroll" style=" overflow-x: hidden; background-color: #F3E8F3;">
             {{-- nav actions --}}
@@ -56,8 +58,9 @@
                     <a href="#"><i class="fa-solid fa-circle-info"></i></a>
                 </div>
             </nav>
-    
-            {!! view('Chatify::layouts.info')->render() !!}
+
+            {!! view('Chatify::layouts.info')->with('id', $id)->render() !!}
+
         </div>
     </div>
 </div>
